@@ -1,0 +1,66 @@
+<div class="container-fluid all-container">
+  <div class="container title-container">
+    <span>FANTASIGHT</span>
+  </div>
+  <div class="container login-container">
+    <mat-card *ngIf="submitted" class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </mat-card>
+    <mat-card *ngIf="!submitted">
+      <div class="container card-title-container">
+        <mat-card-title i18n>Login</mat-card-title>
+      </div>
+      <mat-card-content>
+        <div class="container">
+          <form [formGroup]="loginForm">
+            <div class="row d-flex justify-content-center">
+              <div class="col-md d-flex justify-content-center">
+                <mat-form-field appearance="outline">
+                  <mat-label i18n>Username</mat-label>
+                  <input
+                    matInput
+                    id="username"
+                    type="text"
+                    formControlName="username"
+                  />
+                </mat-form-field>
+              </div>
+              <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                <div class="col-md form-error" *ngIf="username.errors.required" i18n>
+                  This field is required.
+                </div>
+                <div class="col-md form-error" *ngIf="username.errors.email" i18n>
+                  Wrong input format, must be email.
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-md d-flex justify-content-center">
+                <mat-form-field appearance="outline">
+                  <mat-label i18n>Password</mat-label>
+                  <input
+                    matInput
+                    id="password"
+                    type="password"
+                    formControlName="password"
+                  />
+                </mat-form-field>
+              </div>
+              <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div class="col-md form-error" *ngIf="password.errors.required" i18n>
+                  This field is required.
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="container actions-container">
+          <button mat-button color="primary" i18n>Register</button>
+          <button mat-raised-button color="primary" (click)="onLogin()" i18n>Login</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
